@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const toysData = require("./models/toysData");
 const allToysData = require("./models/allToysData");
+const allusers = require("./models/users");
 const methodOverride = require("method-override");
 //----------------------------------------------------{MiddleWare}
 app.set("view engine", "jsx");
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
 // ---------------------------------------------------{Routes}
 
 app.get("/", (req, res) => {
-  res.send("<h1>Home page</h1><br/><a href='/toys'>check all toys</a>");
+  res.render("HomePage");
 });
 
 app.get("/toys", (req, res) => {
@@ -43,9 +44,22 @@ app.get("/toys/newToy", (req, res) => {
 
 app.post("/toys", (req, res) => {
   allToysData.create(req.body, (err, createToy) => {
-    // console.log(req.body);
-    // console.log(createToy);
+    console.log(req.body);
+    console.log(createToy);
     res.redirect("/toys");
+  });
+});
+
+app.post("/", (req, res) => {
+  if (req.body.admin === "on") {
+    req.body.admin = true;
+  } else {
+    req.body.admin = false;
+  }
+  allusers.create(req.body, (err, newUser) => {
+    console.log(newUser);
+    console.log(req.body);
+    res.redirect("/");
   });
 });
 
@@ -58,7 +72,7 @@ app.get("/toys/:id/edit", (req, res) => {
 app.put("/toys/:id", (req, res) => {
   allToysData.findByIdAndUpdate(req.params.id, req.body, (err, updatedToy) => {
     console.log(updatedToy);
-    res.redirect(`/toys/${updatedToy._id}`);
+    res.redirect(`/toys`);
   });
 });
 

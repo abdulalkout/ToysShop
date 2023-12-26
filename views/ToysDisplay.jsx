@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 function ToysDisplay({ toy }) {
   const showComments = () => {
-    if (toy.comments.lenght > 0) {
+    if (toy.comments.length > 0) {
       return <p>ddd</p>;
     } else {
       return <p>No comments</p>;
@@ -65,7 +65,7 @@ function ToysDisplay({ toy }) {
           }}
         >
           <h3>Comments</h3>
-          {toy.comments.lenght !== 0 ? (
+          {toy.comments.length !== 0 ? (
             <p>
               {toy.comments.map((comment, index) => {
                 return <p key={index}> {comment}</p>;

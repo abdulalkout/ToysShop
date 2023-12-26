@@ -77,24 +77,45 @@ function ToysPage({ toys }) {
             );
           })}
         </div>
-        <button
-          style={{
-            backgroundColor: "lightblue",
-            border: "none",
-            borderRadius: "10px",
-            height: "30px",
-          }}
-        >
-          <a
+        <div style={{ marginBottom: "50px" }}>
+          <button
             style={{
-              color: "black",
-              textDecoration: "none",
+              backgroundColor: "lightblue",
+              border: "none",
+              borderRadius: "10px",
+              height: "30px",
+              marginRight: "20px",
             }}
-            href="/toys/newToy"
           >
-            Add new toy
-          </a>
-        </button>
+            <a
+              style={{
+                color: "black",
+                textDecoration: "none",
+              }}
+              href="/toys/newToy"
+            >
+              Add new toy
+            </a>
+          </button>
+          <button
+            style={{
+              backgroundColor: "lightblue",
+              border: "none",
+              borderRadius: "10px",
+              height: "30px",
+            }}
+          >
+            <a
+              style={{
+                color: "black",
+                textDecoration: "none",
+              }}
+              href="/"
+            >
+              Home Page
+            </a>
+          </button>
+        </div>
       </div>
     </>
   );

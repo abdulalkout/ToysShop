@@ -65,24 +65,31 @@ app.post("/", (req, res) => {
 
 app.get("/toys/:id/edit", (req, res) => {
   allToysData.findById(req.params.id, (err, foundToy) => {
+    console.log("after edit", updatedToy);
     res.render("EditToy", { toy: foundToy });
   });
 });
 
 app.put("/toys/:id", (req, res) => {
-  // if(req.body.comments.lenght >0){
-  //   const updatedtoy = {
-  //     name: req.body.name,
-  //     img: req.body.img,
-  //     price: req.body.price,
-  //     discription: req.body.discription,
-  //     comments: req.body,
-  //   }
-  // }
-  allToysData.findByIdAndUpdate(req.params.id, req.body, (err, updatedToy) => {
-    console.log("after update", updatedToy);
-    res.redirect(`/toys`);
-  });
+  // allToysData.findByIdAndUpdate(req.params.id, req.body, (err, updatedToy) => {
+  //   console.log("after put", updatedToy);
+  //   res.redirect(`/toys`);
+  // });
+
+  allToysData.findByIdAndUpdate(
+    req.params.id,
+    { $push: { comments: req.body.comments } }, // Use $push to add a new comment to the array
+    { new: true }, // Returns the updated document
+    (err, updatedToy) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+      } else {
+        console.log("after put", updatedToy);
+        res.redirect(`/toys/${req.params.id}`);
+      }
+    }
+  );
 });
 
 app.delete("/toys/:id", (req, res) => {

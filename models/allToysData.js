@@ -5,6 +5,7 @@ const toysSchema = new mongoose.Schema({
   img: { type: String, required: true },
   price: { type: String, required: true },
   discription: { type: String, required: true },
+  comments: { type: Array, required: false },
 });
 
 const allToysData = mongoose.model("Toys", toysSchema);

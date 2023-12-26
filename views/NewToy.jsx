@@ -2,14 +2,6 @@ import React from "react";
 import NavBar from "./NavBar";
 
 function NewToy() {
-  const cardToysStyle = {
-    height: "300px",
-    width: "300px",
-    backgroundColor: "lightblue",
-    borderRadius: "30px",
-    textAlign: "center",
-    padingTop: "20px",
-  };
   return (
     <>
       <NavBar />

@@ -70,8 +70,17 @@ app.get("/toys/:id/edit", (req, res) => {
 });
 
 app.put("/toys/:id", (req, res) => {
+  // if(req.body.comments.lenght >0){
+  //   const updatedtoy = {
+  //     name: req.body.name,
+  //     img: req.body.img,
+  //     price: req.body.price,
+  //     discription: req.body.discription,
+  //     comments: req.body,
+  //   }
+  // }
   allToysData.findByIdAndUpdate(req.params.id, req.body, (err, updatedToy) => {
-    console.log(updatedToy);
+    console.log("after update", updatedToy);
     res.redirect(`/toys`);
   });
 });
@@ -92,6 +101,6 @@ app.get("/toys/:id", (req, res) => {
 });
 
 //==Port==//
-app.listen(3000, (req, res) => {
-  console.log("working on port 3000");
+app.listen(3001, (req, res) => {
+  console.log("working on port 3001");
 });

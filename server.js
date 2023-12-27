@@ -65,17 +65,11 @@ app.post("/", (req, res) => {
 
 app.get("/toys/:id/edit", (req, res) => {
   allToysData.findById(req.params.id, (err, foundToy) => {
-    console.log("after edit", updatedToy);
     res.render("EditToy", { toy: foundToy });
   });
 });
 
 app.put("/toys/:id", (req, res) => {
-  // allToysData.findByIdAndUpdate(req.params.id, req.body, (err, updatedToy) => {
-  //   console.log("after put", updatedToy);
-  //   res.redirect(`/toys`);
-  // });
-
   allToysData.findByIdAndUpdate(
     req.params.id,
     { $push: { comments: req.body.comments } }, // Use $push to add a new comment to the array
